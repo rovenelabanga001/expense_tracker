@@ -5,9 +5,6 @@ import Dashboard from "../components/Dashboard";
 const Home = () => {
   return (
     <div>
-      {/* <header>
-        <Navbar />
-      </header> */}
       <main>
         <Dashboard />
       </main>

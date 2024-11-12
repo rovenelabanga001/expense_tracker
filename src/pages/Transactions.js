@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import TransactionsForm from "../components/TransactionsForm";
+import TransactionList from "../components/TransactionList";
 
 const Transactions = () => {
   return (
-    <div><h1>Transactions</h1></div>
-  )
-}
+    <>
+      <TransactionsForm />
+      <TransactionList />
+    </>
+  );
+};
 
-export default Transactions
+export default Transactions;
