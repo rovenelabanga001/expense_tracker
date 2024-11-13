@@ -1,8 +1,10 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import Dashboard from "../components/Dashboard";
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
+  const { transactions, setTransactions } = useOutletContext();
+ 
   return (
     <div>
       <main>
