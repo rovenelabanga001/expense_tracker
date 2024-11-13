@@ -21,6 +21,9 @@
   display: flex;
   gap: 20px;
 }
+.navbar-container nav ul li{
+  list-style-type: none;
+}
 .navbar-container nav .nav-link {
   color: white;
   font-weight: 700;

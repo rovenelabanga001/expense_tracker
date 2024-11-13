@@ -91,7 +91,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
             name="amount"
             id="amount"
             value={formData.amount}
-            placeholder="Amount"
+            placeholder="Amount in Ksh"
             onChange={handleOnChange}
             required
           />
