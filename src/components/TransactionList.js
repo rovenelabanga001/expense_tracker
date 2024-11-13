@@ -38,7 +38,7 @@ const TransactionList = ({
   };
 
   const transactionsToRender = filteredTransactions.map((transaction) => {
-    console.log(transaction.id);
+    
     return (
       <tr key={transaction.id}>
         <td>{transaction.type}</td>
