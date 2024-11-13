@@ -24,7 +24,7 @@ const TransactionSummary = ({ transactions }) => {
       <h1 className="heading-big">Transactions Summary</h1>
       <button className="btn-image-btn" onClick={handleToggleVisibility}>
         <img
-          src={isVisible ? visibilityOn : visibilityOff}
+          src={isVisible ? visibilityOff : visibilityOn}
           alt="toggle-visibility-icon"
           className="btn-image"
         />
