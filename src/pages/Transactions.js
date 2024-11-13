@@ -3,6 +3,7 @@ import TransactionsForm from "../components/TransactionsForm";
 import TransactionList from "../components/TransactionList";
 import { useOutletContext } from "react-router-dom";
 import EditTransactionModal from "../components/EditTransactionModal";
+import TransactionSummary from "../components/TransactionSummary";
 
 const Transactions = () => {
   const {
@@ -31,23 +32,21 @@ const Transactions = () => {
         <>
           <TransactionsForm
             transactions={transactions}
-            setTransactions={setTransactions}
             onAddTransaction={handleAddTransaction}
           />
           <TransactionList
             transactions={transactions}
-            setTransactions={setTransactions}
             onDeleteTransaction={handleDeleteTransaction}
             onEdit={openEditModal}
           />
           {isModalOpen && (
             <EditTransactionModal
               transaction={transactionToEdit}
-              isOpen={isModalOpen}
               onClose={closeEditModal}
               onSave={handleEditTransaction}
             />
           )}
+          <TransactionSummary transactions={transactions}/>
         </>
       ) : (
         <p>Loading transactions</p>

@@ -28,31 +28,40 @@ const TransactonsForm = ({ onAddTransaction }) => {
     };
 
     fetch("http://127.0.0.1:3001/transactions", {
-      method:"POST",
-      headers:{
+      method: "POST",
+      headers: {
         "Content-Type": "application/json",
-        Accept: "application/json"
+        Accept: "application/json",
       },
-      body: JSON.stringify(newTransaction)
+      body: JSON.stringify(newTransaction),
     })
-    .then((response)=> response.json())
-    .then((data)=>{
-      onAddTransaction(data)
-      setFormData({
-        type:"",
-        category:"",
-        date:"",
-        amount:"",
-        description:""
-      })
-    })
+      .then((response) => response.json())
+      .then((data) => {
+        onAddTransaction(data);
+        setFormData({
+          type: "",
+          category: "",
+          date: "",
+          amount: "",
+          description: "",
+        });
+      });
   };
   return (
     <section className="not-header">
       <div className="transaction-form-container">
         <h3 className="heading-big">Add Transaction</h3>
-        <form className="transaction-form" onSubmit={handleSubmit}>
-          <select name="type" value={formData.type} onChange={handleOnChange}>
+        <form
+          className="transaction-form"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+        >
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleOnChange}
+            required
+          >
             <option value="" disabled hidden>
               Transaction Type
             </option>
@@ -66,6 +75,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
             value={formData.category}
             placeholder="Category"
             onChange={handleOnChange}
+            required
           />
           <input
             type="date"
@@ -74,6 +84,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
             value={formData.date}
             placeholder="date"
             onChange={handleOnChange}
+            required
           />
           <input
             type="number"
@@ -82,6 +93,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
             value={formData.amount}
             placeholder="Amount"
             onChange={handleOnChange}
+            required
           />
           <textarea
             name="description"
@@ -89,6 +101,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
             value={formData.description}
             placeholder="Description"
             onChange={handleOnChange}
+            required
           />
           <button type="submit" className="btn">
             Add

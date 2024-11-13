@@ -1,15 +1,15 @@
 import React from "react";
 import Dashboard from "../components/Dashboard";
 import { useOutletContext } from "react-router-dom";
+import TransactionSummary from "../components/TransactionSummary";
 
 const Home = () => {
   const { transactions, setTransactions } = useOutletContext();
  
   return (
     <div>
-      <main>
-        <Dashboard />
-      </main>
+        <Dashboard transactions={transactions} setTransactions={setTransactions} />
+        <TransactionSummary transactions={transactions} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import "./EditTransactionModal.css";
 
-const EditTransactionModal = ({ transaction, isOpen, onClose, onSave }) => {
+const EditTransactionModal = ({ transaction, onClose, onSave }) => {
   const [editedTransaction, setEditedTransaction] = React.useState(transaction);
 
   React.useEffect(() => {
@@ -16,7 +16,7 @@ const EditTransactionModal = ({ transaction, isOpen, onClose, onSave }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(editedTransaction);
-    onClose();
+    onClose();;
   };
   const handleCloseClick = () => {
     onClose();
@@ -65,12 +65,12 @@ const EditTransactionModal = ({ transaction, isOpen, onClose, onSave }) => {
             onChange={handleChange}
           />
           <div className="buttons">
-          <button type="submit" className="btn">
-            Save
-          </button>
-          <button type="button" className="btn" onClick={handleCloseClick}>
-            Close
-          </button>
+            <button type="submit" className="btn">
+              Save
+            </button>
+            <button type="button" className="btn" onClick={handleCloseClick}>
+              Close
+            </button>
           </div>
         </form>
       </div>

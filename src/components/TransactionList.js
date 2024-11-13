@@ -8,6 +8,7 @@ const TransactionList = ({
   onDeleteTransaction,
   onEdit,
 }) => {
+  const [searchTerm, setSearchTerm] = React.useState("");
   const handleClickDelete = (transactionId) => {
     fetch(`http://127.0.0.1:3001/transactions/${transactionId}`, {
       method: "DELETE",
@@ -22,10 +23,21 @@ const TransactionList = ({
       .catch((error) => console.error("Error deleting transaction", error));
   };
 
-  const handleClickEdit = (transaction) => {
-    onEdit(transaction);
+  const filteredTransactions = transactions.filter((transaction) => {
+    const { type, category, date } = transaction;
+    const searchText = searchTerm.toLowerCase();
+    return (
+      type.toLowerCase().includes(searchText) ||
+      category.toLowerCase().includes(searchText) ||
+      date.includes(searchText)
+    );
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
-  const transactionsToRender = transactions.map((transaction) => {
+
+  const transactionsToRender = filteredTransactions.map((transaction) => {
     console.log(transaction.id);
     return (
       <tr key={transaction.id}>
@@ -40,7 +52,7 @@ const TransactionList = ({
               src={edit}
               alt="edit-icon"
               className="btn-image"
-              onClick={() => handleClickEdit(transaction)}
+              onClick={() => onEdit(transaction)}
             />
           </button>
         </td>
@@ -60,6 +72,14 @@ const TransactionList = ({
   return (
     <section className="not-header">
       <div className="table-container">
+        <form className="search-transactions-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={searchTerm}
+            placeholder="Search for transactions"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </form>
         <table>
           <thead>
             <tr>

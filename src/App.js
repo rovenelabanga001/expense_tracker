@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [transactions, setTransactions] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
- 
+
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
   };
@@ -20,16 +20,32 @@ function App() {
   };
 
   const handleEditTransaction = (updatedTransaction) => {
-    setTransactions((prevTransactions) => {
-      prevTransactions.map((transaction) =>
-        transaction.id === updatedTransaction.id
-          ? updatedTransaction
-          : transaction
-      );
-    });
+    fetch(`http://127.0.0.1:3001/transactions/${updatedTransaction.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(updatedTransaction),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to update transaction");
+        }
+        return response.json();
+      })
+      .then((updatedTransaction) => {
+        setTransactions((prevTransactions) => {
+          return prevTransactions.map((transaction) =>
+            transaction.id === updatedTransaction.id
+              ? updatedTransaction
+              : transaction
+          );
+        });
+      })
+      .catch((error) => console.error("Error updating transaction", error))
   };
 
- 
   React.useEffect(() => {
     fetch("http://127.0.0.1:3001/transactions")
       .then((response) => response.json())

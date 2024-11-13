@@ -2,18 +2,15 @@ import React from "react";
 import Welcome from "./Welcome";
 import Category from "./Category";
 import RecentTransactions from "./RecentTransactions";
+import WeeklyExpenseChart from "./WeeklyExpenseChart";
 
-const Dashboard = () => {
+const Dashboard = ({ transactions }) => {
   return (
-    <>
-      <section className="not-header">
-        <Welcome />
-      </section>
-      <section className=" not-header">
-        <Category />
-      </section>
-        <RecentTransactions />
-    </>
+    <main>
+      <Welcome />
+      <WeeklyExpenseChart transactions={transactions} />
+      <RecentTransactions transactions={transactions} />
+    </main>
   );
 };
 
