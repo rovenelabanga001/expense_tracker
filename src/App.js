@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   const [transactions, setTransactions] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
@@ -21,7 +22,7 @@ function App() {
 
   const handleEditTransaction = (updatedTransaction) => {
     fetch(
-      ` https://expense-tracker-z3wf.onrender.com/${updatedTransaction.id}`,
+      `https://expense-tracker-z3wf.onrender.com/transactions/${updatedTransaction.id}`,
       {
         method: "PATCH",
         headers: {

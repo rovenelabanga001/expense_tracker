@@ -10,9 +10,12 @@ const TransactionList = ({
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleClickDelete = (transactionId) => {
-    fetch(` https://expense-tracker-z3wf.onrender.com/${transactionId}`, {
-      method: "DELETE",
-    })
+    fetch(
+      ` https://expense-tracker-z3wf.onrender.com/transactions/${transactionId}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to delete transaction");
@@ -38,7 +41,6 @@ const TransactionList = ({
   };
 
   const transactionsToRender = filteredTransactions.map((transaction) => {
-    
     return (
       <tr key={transaction.id}>
         <td>{transaction.type}</td>
