@@ -20,14 +20,17 @@ function App() {
   };
 
   const handleEditTransaction = (updatedTransaction) => {
-    fetch(` http://localhost:3001/${updatedTransaction.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(updatedTransaction),
-    })
+    fetch(
+      ` https://expense-tracker-z3wf.onrender.com/${updatedTransaction.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(updatedTransaction),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to update transaction");
@@ -47,7 +50,7 @@ function App() {
   };
 
   React.useEffect(() => {
-    fetch(" http://localhost:3001/transactions")
+    fetch(" https://expense-tracker-z3wf.onrender.com/transactions")
       .then((response) => response.json())
       .then((data) => {
         setTransactions(data);

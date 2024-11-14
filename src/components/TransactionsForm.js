@@ -27,7 +27,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
       description: formData.description,
     };
 
-    fetch(" http://localhost:3001/transactions", {
+    fetch(" https://expense-tracker-z3wf.onrender.com/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

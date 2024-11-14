@@ -10,7 +10,7 @@ const TransactionList = ({
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleClickDelete = (transactionId) => {
-    fetch(` http://localhost:3001/transactions/${transactionId}`, {
+    fetch(` https://expense-tracker-z3wf.onrender.com/${transactionId}`, {
       method: "DELETE",
     })
       .then((response) => {
