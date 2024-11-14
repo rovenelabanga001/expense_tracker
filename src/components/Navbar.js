@@ -1,8 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({setIsLoggedIn}) => {
+
+  const navigate = useNavigate()
+  const handleLogOut =()=> {
+    setIsLoggedIn(false)
+    navigate("/")
+  }
   return (
     <div className="navbar-container">
       <nav>
@@ -30,7 +36,7 @@ const Navbar = () => {
         </ul>
       </nav>
       <div className="navbar-button-container">
-        <button className="btn">Log Out</button>
+        <button className="btn" onClick={handleLogOut}>Log Out</button>
       </div>
     </div>
   );

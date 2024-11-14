@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
+import Login from "./pages/Login";
 
 function App() {
   const [transactions, setTransactions] = React.useState([]);
@@ -65,8 +66,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      {!loading ? (
+      <Navbar setIsLoggedIn={setIsLoggedIn} />
+      {!isLoggedIn ? (
+        <Login key="login" setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn as prop
+      ) : !loading ? (
         <Outlet
           context={{
             transactions,
