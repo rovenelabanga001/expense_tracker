@@ -1,6 +1,5 @@
 import React from "react";
 import Welcome from "./Welcome";
-import Category from "./Category";
 import RecentTransactions from "./RecentTransactions";
 import WeeklyExpenseChart from "./WeeklyExpenseChart";
 
