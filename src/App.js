@@ -20,7 +20,7 @@ function App() {
   };
 
   const handleEditTransaction = (updatedTransaction) => {
-    fetch(`http://127.0.0.1:3001/transactions/${updatedTransaction.id}`, {
+    fetch(` http://localhost:3001/${updatedTransaction.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -43,11 +43,11 @@ function App() {
           );
         });
       })
-      .catch((error) => console.error("Error updating transaction", error))
+      .catch((error) => console.error("Error updating transaction", error));
   };
 
   React.useEffect(() => {
-    fetch("http://127.0.0.1:3001/transactions")
+    fetch(" http://localhost:3001/transactions")
       .then((response) => response.json())
       .then((data) => {
         setTransactions(data);

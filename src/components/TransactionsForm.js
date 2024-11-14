@@ -27,7 +27,7 @@ const TransactonsForm = ({ onAddTransaction }) => {
       description: formData.description,
     };
 
-    fetch("http://127.0.0.1:3001/transactions", {
+    fetch(" http://localhost:3001/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

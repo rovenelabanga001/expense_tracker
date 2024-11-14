@@ -10,7 +10,7 @@ const TransactionList = ({
 }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const handleClickDelete = (transactionId) => {
-    fetch(`http://127.0.0.1:3001/transactions/${transactionId}`, {
+    fetch(` http://localhost:3001/transactions/${transactionId}`, {
       method: "DELETE",
     })
       .then((response) => {
