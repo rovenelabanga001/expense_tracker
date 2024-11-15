@@ -7,17 +7,18 @@ import Login from "./pages/Login";
 function App() {
   const [transactions, setTransactions] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(
+    () => JSON.parse(localStorage.getItem("isLoggedIn")) || false
+  );
 
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
   };
 
   const handleDeleteTransaction = (transactionId) => {
-    const updatedTransactions = transactions.filter((transaction) => {
-      return transaction.id !== transactionId;
-    });
-
+    const updatedTransactions = transactions.filter(
+      (transaction) => transaction.id !== transactionId
+    );
     setTransactions(updatedTransactions);
   };
 
@@ -40,19 +41,19 @@ function App() {
         return response.json();
       })
       .then((updatedTransaction) => {
-        setTransactions((prevTransactions) => {
-          return prevTransactions.map((transaction) =>
+        setTransactions((prevTransactions) =>
+          prevTransactions.map((transaction) =>
             transaction.id === updatedTransaction.id
               ? updatedTransaction
               : transaction
-          );
-        });
+          )
+        );
       })
       .catch((error) => console.error("Error updating transaction", error));
   };
 
   React.useEffect(() => {
-    fetch(" https://expense-tracker-z3wf.onrender.com/transactions")
+    fetch("https://expense-tracker-z3wf.onrender.com/transactions")
       .then((response) => response.json())
       .then((data) => {
         setTransactions(data);
@@ -64,11 +65,16 @@ function App() {
       });
   }, []);
 
+  React.useEffect(() => {
+    // Update localStorage whenever isLoggedIn changes
+    localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
+
   return (
     <div className="App">
       <Navbar setIsLoggedIn={setIsLoggedIn} />
       {!isLoggedIn ? (
-        <Login key="login" setIsLoggedIn={setIsLoggedIn} /> // Pass setIsLoggedIn as prop
+        <Login key="login" setIsLoggedIn={setIsLoggedIn} />
       ) : !loading ? (
         <Outlet
           context={{

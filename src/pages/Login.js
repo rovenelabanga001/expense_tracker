@@ -41,7 +41,12 @@ const Login = ({ setIsLoggedIn }) => {
         if (user) {
           setIsLoggedIn(true);
           setErrorMessage("");
+          setFormData({
+            username: "",
+            password: ""
+          });
         } else {
+          alert("Invalid username or password, please try again")
           setErrorMessage("Invalid username or password, please try again");
         }
       })
@@ -54,6 +59,7 @@ const Login = ({ setIsLoggedIn }) => {
   const handleSignUp = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match")
       setErrorMessage("Passwords do not match");
       return;
     }
@@ -79,6 +85,11 @@ const Login = ({ setIsLoggedIn }) => {
       .then(() => {
         setIsLoggedIn(true);
         setErrorMessage("");
+        setFormData({
+          username: "",
+          password: "",
+          confirmPassword: "",
+        });
       })
       .catch((error) => {
         console.error("Error signing up:", error);
@@ -110,7 +121,7 @@ const Login = ({ setIsLoggedIn }) => {
           className="signin-form-container"
           style={{ display: showSignIn ? "block" : "none" }}
         >
-          <form className="user-forms sign-in-form" onSubmit={handleLogin}>
+          <form className="user-forms sign-in-form" onSubmit={handleLogin} autoComplete="off">
             <h1 className="heading-big">Sign In</h1>
             <input
               type="text"
@@ -118,6 +129,7 @@ const Login = ({ setIsLoggedIn }) => {
               name="username"
               value={formData.username}
               onChange={handleInputChange}
+              required
             />
             <input
               type="password"
@@ -125,6 +137,7 @@ const Login = ({ setIsLoggedIn }) => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
+              required
             />
             <button type="submit" className="btn sign-up-btns">
               Sign In
@@ -145,7 +158,7 @@ const Login = ({ setIsLoggedIn }) => {
           className="signup-form-container"
           style={{ display: showSignIn ? "none" : "block" }}
         >
-          <form className="user-forms sign-up-form" onSubmit={handleSignUp}>
+          <form className="user-forms sign-up-form" onSubmit={handleSignUp} autoComplete="off">
             <h1 className="heading-big">Sign Up</h1>
             <input
               placeholder="Create username"
@@ -153,6 +166,7 @@ const Login = ({ setIsLoggedIn }) => {
               name="username"
               value={formData.username}
               onChange={handleInputChange}
+              required
             />
             <input
               placeholder="Create password"
@@ -160,6 +174,7 @@ const Login = ({ setIsLoggedIn }) => {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
+              required
             />
             <input
               placeholder="Confirm password"
@@ -167,6 +182,7 @@ const Login = ({ setIsLoggedIn }) => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleInputChange}
+              required
             />
             <button type="submit" className="btn sign-up-btns">
               Sign Up
