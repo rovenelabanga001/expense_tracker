@@ -9,11 +9,13 @@ const Welcome = () => {
     setCurrentDate(formattedDate);
   }, []);
   return (
-    <section className="not-header">
+    <section className="not-header" >
       <div className="welcome-user-container">
         <h1 className="heading-big">{currentDate}</h1>
-        <p>Welcome !!</p>
-        <p>the perfect tool to help you take control of your finances!</p>
+        <h1 className="heading-big">Welcome !!</h1>
+        <h6 className="heading-big" style={{ fontSize: "12px" }}>
+          the perfect tool to help you take control of your finances!
+        </h6>
       </div>
     </section>
   );

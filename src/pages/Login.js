@@ -83,7 +83,7 @@ const Login = ({ setIsLoggedIn }) => {
         return response.json();
       })
       .then(() => {
-        setIsLoggedIn(true);
+        alert("Account created successfully, please log in")
         setErrorMessage("");
         setFormData({
           username: "",
